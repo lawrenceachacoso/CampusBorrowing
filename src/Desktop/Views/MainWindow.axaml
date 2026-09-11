@@ -9,6 +9,62 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="Campus Equipment Borrowing System">
 
+    <Window.Styles>
+    <!-- Buttons -->
+    <Style Selector="Button">
+        <Setter Property="Padding" Value="14,8"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="Background" Value="#2D6CDF"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    <Style Selector="Button:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#1F55B8"/>
+    </Style>
+    <Style Selector="Button:disabled">
+        <Setter Property="Opacity" Value="0.5"/>
+    </Style>
+
+    <!-- Sidebar nav buttons (if you gave them a class) -->
+    <Style Selector="Button.nav">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#333333"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    </Style>
+    <Style Selector="Button.nav:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#E8EEFB"/>
+    </Style>
+
+    <!-- Headings -->
+    <Style Selector="TextBlock.heading">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="0,0,0,10"/>
+        <Setter Property="Foreground" Value="#1A1A1A"/>
+    </Style>
+
+    <!-- Status/feedback text -->
+    <Style Selector="TextBlock.status">
+        <Setter Property="FontStyle" Value="Italic"/>
+        <Setter Property="Foreground" Value="#555555"/>
+        <Setter Property="Margin" Value="0,8,0,0"/>
+    </Style>
+
+    <!-- Lists -->
+    <Style Selector="ListBox">
+        <Setter Property="Margin" Value="0,4,0,4"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="BorderBrush" Value="#DDDDDD"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+    <Style Selector="ListBoxItem">
+        <Setter Property="Padding" Value="8,6"/>
+    </Style>
+</Window.Styles>
+
     <Grid ColumnDefinitions="160,*" Margin="16">
 
         <!-- NAVIGATION SIDEBAR -->
