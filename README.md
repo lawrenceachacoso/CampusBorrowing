@@ -60,30 +60,6 @@ dotnet build
 dotnet run --project src/Desktop/CampusBorrowing.Desktop.csproj
 ```
 
-## Reflection
 
-**1. Where does the dependency rule actually show up here?**
-Domain has zero refs. Application only refs Domain. Infra + Desktop ref Application/Domain, never the reverse. So UI or storage changes can't break the core.
-
-**2. What'd it take to swap in a real DB instead of in-memory?**
-Only touch Infrastructure — new repo classes using EF Core/SQLite, then update the DI registration. Domain/Application/Desktop don't change since they only know about the interfaces.
-
-**3. Why put business rules in Application instead of the ViewModel?**
-So they're not tied to Avalonia specifically. If there was ever a second UI (web, CLI) the rule already lives in one place instead of getting copy-pasted and drifting out of sync.
-
-**4. Hardest part?**
-Getting the nav panels to actually toggle — the `!IsEquipmentViewActive` negated binding wasn't resolving right. Fixed it by just using two separate bools instead of relying on the `!`.
-
-**5. Known limitation?**
-Borrowing IDs come from `new Random().Next(1000, 999999)` so uniqueness not guaranteed.
-
-**6. What would you improve with more time?**
-Actual separate views/viewmodels for Equipment and Borrowings instead of one ViewModel toggling visibility, plus unit tests around the two services to lock the rules.
-
-## Status
-
-Core stuff (borrow, return, nav, DI, MVVM, styling) all working end to end.
-
-## Author
-
-Lawrence ("Law")
+BSIT-3D
+lawrence andre l. achacoso
