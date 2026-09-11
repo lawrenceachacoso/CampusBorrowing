@@ -31,6 +31,26 @@ public partial class MainViewModel : ViewModelBase
 
     [ObservableProperty]
     private int _studentIdInput = 1;
+    [ObservableProperty]
+    private bool _isEquipmentViewActive = true;
+
+    [ObservableProperty]
+    private bool _isBorrowingsViewActive = false;
+
+    [RelayCommand]
+    private void ShowEquipment()
+    {
+        IsEquipmentViewActive = true;
+        IsBorrowingsViewActive = false;
+    }
+
+    [RelayCommand]
+    private void ShowBorrowings()
+    {
+        IsEquipmentViewActive = false;
+        IsBorrowingsViewActive = true;
+    }
+
 
     public MainViewModel(
         BorrowEquipmentService borrowService,
