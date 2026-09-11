@@ -9,7 +9,9 @@ public class InMemoryEquipmentRepository : IEquipmentRepository
     {
         new Equipment(1, "Digital Multimeter"),
         new Equipment(2, "Oscilloscope"),
-        new Equipment(3, "Soldering Iron")
+        new Equipment(3, "Soldering Iron"),
+        new Equipment(4, "Function Generator")
+
     };
 
     public Task<Equipment?> GetEquipmentAsync(int id)

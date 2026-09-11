@@ -3,20 +3,69 @@
         xmlns:vm="using:CampusBorrowing.Desktop.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="500"
         x:Class="CampusBorrowing.Desktop.Views.MainWindow"
         x:DataType="vm:MainViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="CampusBorrowing.Desktop">
+        Title="Campus Equipment Borrowing System">
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainViewModel />
-    </Design.DataContext>
+    <Grid ColumnDefinitions="250,*" Margin="16">
 
-    <TextBox Text="{Binding Greeting}"
-             HorizontalAlignment="Center"
-             VerticalAlignment="Center" />
+        <!-- LEFT PANEL: Equipment list + student input -->
+        <StackPanel Grid.Column="0" Spacing="8" Margin="0,0,16,0">
+            <TextBlock Text="Equipment" FontSize="18" FontWeight="Bold" />
+
+            <ListBox ItemsSource="{Binding EquipmentList}"
+                     SelectedItem="{Binding SelectedEquipment}"
+                     Height="250">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Id, StringFormat='ID: {0}'}" FontSize="11" />
+                            <TextBlock Text="{Binding Availability, StringFormat='Available: {0}'}" FontSize="11" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <TextBlock Text="Student ID" FontWeight="Bold" Margin="0,8,0,0" />
+            <NumericUpDown Value="{Binding StudentIdInput}" Minimum="1" />
+
+            <Button Content="Borrow Equipment"
+                    Command="{Binding BorrowCommand}"
+                    HorizontalAlignment="Stretch"
+                    Margin="0,8,0,0" />
+        </StackPanel>
+
+        <!-- RIGHT PANEL: Active borrowings + status -->
+        <StackPanel Grid.Column="1" Spacing="8">
+            <TextBlock Text="Active Borrowings" FontSize="18" FontWeight="Bold" />
+
+            <ListBox ItemsSource="{Binding ActiveBorrowings}"
+                     SelectedItem="{Binding SelectedBorrowing}"
+                     Height="250">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Id, StringFormat='Borrowing ID: {0}'}" FontWeight="Bold" />
+                            <TextBlock Text="{Binding EquipmentId, StringFormat='Equipment ID: {0}'}" FontSize="11" />
+                            <TextBlock Text="{Binding Status, StringFormat='Status: {0}'}" FontSize="11" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Button Content="Return Equipment"
+                    Command="{Binding ReturnCommand}"
+                    HorizontalAlignment="Stretch"
+                    Margin="0,8,0,0" />
+
+            <Border Background="#EEEEEE" Padding="8" Margin="0,16,0,0">
+                <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap" />
+            </Border>
+        </StackPanel>
+
+    </Grid>
 
 </Window>
